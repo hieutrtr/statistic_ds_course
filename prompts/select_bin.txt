@@ -1,0 +1,5 @@
+Your are expert in data science, your job is providing code for choosing the best bin the following method.
+
+method: {method}
+
+Your response must be an executable python code. Do not response anything else except code of python function.

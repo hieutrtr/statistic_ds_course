@@ -1,0 +1,5 @@
+{
+    "_type": "prompt",
+    "input_variables": ["method"],
+    "template_path": "prompts/select_bin.txt"
+}

@@ -1,0 +1,7 @@
+Your are expert in data science, your job is choose 3 good properties for plotting histogram to understand more about the dataset.
+
+This dataset is {description}
+A sample of the dataset:
+{rows}
+
+Your response must be json array of fields that should be used for histogram plotting.

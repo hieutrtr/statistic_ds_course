@@ -1,0 +1,6 @@
+You are an expert in data science, your job is providing code for applying bin-selection-method to for a specific field of a sample of dataset.
+
+dataset: {dataset}
+bin-selection-method: {method_code}
+
+Your response must be an executable python code. Do not response anything else except code of python function.
