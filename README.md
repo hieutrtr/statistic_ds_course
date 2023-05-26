@@ -14,6 +14,8 @@ python3 app.py
 
 ## Bin selection methods
 
+See methods implementation in `methods` directory.
+
 #### Cross validation
 ```python
 def cross_validation(X):
