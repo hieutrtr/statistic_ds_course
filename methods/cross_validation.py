@@ -27,8 +27,8 @@ def select_bin(dataset, fields):
             scores = []
             kf = KFold(n_splits=10, shuffle=True)
 
-            for train_index, test_index in kf.split(data):
-                X_train, X_test = data[train_index], data[test_index]
+            for train_index, _ in kf.split(data):
+                X_train = data[train_index]
                 q75, q25 = np.percentile(X_train, [75, 25])
                 iqr = q75 - q25
                 bin_width = 2 * (iqr / len(X_train) ** (1 / 3))
@@ -40,8 +40,8 @@ def select_bin(dataset, fields):
                 hist, _ = np.histogram(X_train, bins=num_bins)
                 hist_norm = hist / len(X_train)
 
-                bin_edges = np.linspace(min(X_train), max(X_train), num_bins + 1)
-                bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
+                # bin_edges = np.linspace(min(X_train), max(X_train), num_bins + 1)
+                # bin_centers = (bin_edges[1:] + bin_edges[:-1]) / 2
 
                 cdf = np.diff(np.percentile(X_train, np.linspace(0, 100, num_bins + 1)))
                 score = np.sum((hist_norm - cdf) ** 2)
