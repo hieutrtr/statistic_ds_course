@@ -1,12 +1,13 @@
-from methods import cross_validation, scott, sturges
+from methods import cross_validation, scott, sturges, plotting
 import os, json
 import pandas as pd
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     # read csv file
     df = pd.read_csv(os.path.abspath('abalone.csv'))
     # get the first 10 rows
-    df = df.head(10)
+    # df = df.head(10)
     # show columns
     print(df.columns)
     # choose fields for histogram
@@ -23,4 +24,13 @@ if __name__ == '__main__':
     cross_validation_bins = cross_validation.select_bin(df, fields)
     print("Cross validation method:")
     print(cross_validation_bins)
+    bins_dict = {
+        "Sturges’s Rule": sturges_bins,
+        "Scott’s normal reference rule": scott_bins,
+        "Cross validation": cross_validation_bins
+    }
+    # plot multiple histograms
+    plotting.plot_histogram(bins_dict, df.to_dict(orient='records'))
+    # show plot
+    plt.show()
 

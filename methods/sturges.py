@@ -6,7 +6,7 @@ def sturges_rule(data):
     data: Array of numerical data
     '''
     num_bins = 1 + np.log2(len(data))
-    return num_bins
+    return round(num_bins)
 
 def select_bin(data, fields):
     '''

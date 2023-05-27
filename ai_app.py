@@ -24,6 +24,12 @@ def apply_method_chain(dataset, method_code):
     result = llm_chain.run({"dataset": dataset, "method_code": method_code})
     return result
 
+def plot_histogram_chain(df):
+    prompt = load_prompt(os.path.abspath("prompts/plot_histogram.json"))
+    llm_chain = LLMChain(prompt=prompt, llm=OpenAI())
+    result = llm_chain.run({"dataset": json.dumps(df.to_dict(orient='records'))})
+    return result
+
 if __name__ == '__main__':
     # read csv file
     df = pd.read_csv(os.path.abspath('abalone.csv'))
@@ -41,9 +47,12 @@ if __name__ == '__main__':
         print("code method:")
         print(method_code)
         # apply method
-        result = apply_method_chain(dataset=json.dumps(df.to_dict(orient='records')), method_code=method_code)
+        bins = apply_method_chain(dataset=json.dumps(df.to_dict(orient='records')), method_code=method_code)
         print("applying method:")
-        print(result)
+        print(bins)
+        plot_code = plot_histogram_chain(df)
+        print("plot code:")
+        print(plot_code)
 
     
     

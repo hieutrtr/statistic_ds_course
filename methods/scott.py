@@ -1,18 +1,11 @@
 import numpy as np
 
 def Scott_bins(data):
-    # Calculate the interquartile range.
-    q75, q25 = np.percentile(data, [75 ,25])
-    iqr = q75 - q25
-
-    # Calculate the optimal bin width.
-    bin_width = 2 * (iqr/len(data)**(1/3))
-
-    # Calculate the number of bins.
-    num_bins = int((max(data) - min(data))/bin_width)
-
-    # Return the optimal bin width and number of bins.
-    return bin_width, num_bins
+    n = len(data)
+    sigma = np.std(data)
+    bin_width = 3.5 * sigma / np.power(n, 1/3)
+    k = np.ceil((np.max(data) - np.min(data)) / bin_width)
+    return int(k)
 
 def select_bin(data, fields):
     
@@ -22,9 +15,8 @@ def select_bin(data, fields):
     for field in fields:
         #Get the values of the field
         values = [item[field] for item in data]
-        print(values)
         #Calculate the bin width and number of bins
-        _, num_bins = Scott_bins(values)
+        num_bins = Scott_bins(values)
         
         #Store the bin width and number of bins
         bins[field] = num_bins
