@@ -23,7 +23,7 @@ def select_bin(dataset, fields):
         best_score = 0
         best_bin = 0
 
-        for bins in range(2, 2, int(np.sqrt(len(data))) + 1):
+        for bins in range(2, int(np.sqrt(len(data))) + 1):
             scores = []
             kf = KFold(n_splits=10, shuffle=True)
 
